@@ -10,8 +10,8 @@ have been tested on Ubuntu 18.04 system.
 #### Install dependencies
 * Create and activate a conda environment 
 ```bash
-conda create -n hcat python=3.7
-conda activate hcat
+conda create -n mobiletrack python=3.7
+conda activate mobiletrack
 ```
 * Install PyTorch
 ```bash
@@ -41,8 +41,8 @@ pip install onnx onnxruntime-gpu==1.6.0
   Create the default environment setting files.
 
 ```bash
-# Change directory to <PATH_of_HCAT>
-cd HCAT
+# Change directory to <PATH_of_mobiletrack>
+cd mobiletrack
 
 # Environment settings for pytracking. Saved at pytracking/evaluation/local.py
 python -c "from pytracking.evaluation.environment import create_default_local_file; create_default_local_file()"
@@ -52,20 +52,20 @@ python -c "from ltr.admin.environment import create_default_local_file; create_d
 ```
 You can modify these files to set the paths to datasets, results paths etc.
 * Add the project path to environment variables  
-Open ~/.bashrc, and add the following line to the end. Note to change <path_of_HCAT> to your real path.
+Open ~/.bashrc, and add the following line to the end. Note to change <path_of_mobiletrack> to your real path.
 ```
-export PYTHONPATH=<path_of_HCAT>:$PYTHONPATH
+export PYTHONPATH=<path_of_mobiletrack>:$PYTHONPATH
 ```
 * Download the pre-trained networks  
-  Download the network for [HCAT](https://drive.google.com/drive/folders/1kcYIb1WMDWo6_96cfN2YwpijcJZp1CIJ?usp=sharing) and put it in the directory set by "network_path" in "pytracking/evaluation/local.py". By default, it is set to pytracking/networks.
+  Download the network for [mobiletrack](https://drive.google.com/drive/folders/1kcYIb1WMDWo6_96cfN2YwpijcJZp1CIJ?usp=sharing) and put it in the directory set by "network_path" in "pytracking/evaluation/local.py". By default, it is set to pytracking/networks.
 
 ## Quick Start
 
 #### TRAINING
 * Modify [local.py](ltr/admin/local.py) to set the paths to datasets, results paths etc.
-* Runing the following commands to train the HCAT. You can customize some parameters by modifying [hcat.py](ltr/train_settings/hcat/hcat.py)
+* Runing the following commands to train the mobiletrack. You can customize some parameters by modifying [mobiletrack.py](ltr/train_settings/mobiletrack/mobiletrack.py)
 ```bash
-conda activate hcat
+conda activate mobiletrack
 cd ltr
 python run_training.py mobiletrack mobiletrack
 # for ddp
@@ -77,7 +77,7 @@ python run_training.py mobiletrack mobiletrack
 * Convert model to onnx
 
 ```
-conda activate hcat
+conda activate mobiletrack
 cd pysot_toolkit
 python pytorch2onnx.py
 ```
@@ -97,10 +97,10 @@ python pytorch2onnx.py
     Then run the following commands
 
     ```bash
-    conda activate hcat
-    cd HCAT
-    python -u pysot_toolkit/test.py --dataset <name of dataset> --name 'HCAT' #test tracker #test tracker
-    python pysot_toolkit/eval.py --tracker_path results/ --dataset <name of dataset> --num 1 --tracker_prefix 'hcat' #eval tracker
+    conda activate mobiletrack
+    cd mobiletrack
+    python -u pysot_toolkit/test.py --dataset <name of dataset> --name 'mobiletrack' #test tracker #test tracker
+    python pysot_toolkit/eval.py --tracker_path results/ --dataset <name of dataset> --num 1 --tracker_prefix 'mobiletrack' #eval tracker
     ```
 
   For onnx model,  You need to specify the path of the model and dataset in the [test_onnx.py](pysot_toolkit/test_onnx.py ).
@@ -114,15 +114,15 @@ python pytorch2onnx.py
     Then run the following commands
 
     ```bash
-  conda activate hcat
-  cd HCAT
-  python -u pysot_toolkit/test_onnx.py --dataset <name of dataset> --name 'HCAT' #test tracker #test tracker
-  python pysot_toolkit/eval.py --tracker_path results/ --dataset <name of dataset> --num 1 --tracker_prefix 'hcat' #eval tracker
+  conda activate mobiletrack
+  cd mobiletrack
+  python -u pysot_toolkit/test_onnx.py --dataset <name of dataset> --name 'mobiletrack' #test tracker #test tracker
+  python pysot_toolkit/eval.py --tracker_path results/ --dataset <name of dataset> --num 1 --tracker_prefix 'mobiletrack' #eval tracker
     ```
 
-  The testing results will in the current directory(results/dataset/hcat/)
+  The testing results will in the current directory(results/dataset/mobiletrack/)
 
-* You can also use [pytracking](https://github.com/chenxin-dlut/HCAT/blob/main/pytracking) to test and evaluate tracker. The results might be slightly different with [PySOT](https://github.com/STVIR/pysot) due to the slight difference in implementation (pytracking saves  results as integers, pysot toolkit saves the results as decimals).
+* You can also use [pytracking](https://github.com/chenxin-dlut/mobiletrack/blob/main/pytracking) to test and evaluate tracker. The results might be slightly different with [PySOT](https://github.com/STVIR/pysot) due to the slight difference in implementation (pytracking saves  results as integers, pysot toolkit saves the results as decimals).
 
 #### Getting Help
 
@@ -130,7 +130,7 @@ If you meet problem, please try searching our Github issues, if you can't find s
 
 - `ImportError: cannot import name region`
 
-Solution: You can just delete `from pysot_toolkit.toolkit.utils.region import vot_overlap, vot_float2str` in [test.py](https://github.com/chenxin-dlut/HCAT/blob/main/pysot_toolkit/test.py) if you don't test VOT2019/18/16. You can also build `region` by `python setup.py build_ext --inplace` in [pysot_toolkit](https://github.com/chenxin-dlut/HCAT/blob/main/pysot_toolkit).
+Solution: You can just delete `from pysot_toolkit.toolkit.utils.region import vot_overlap, vot_float2str` in [test.py](https://github.com/chenxin-dlut/mobiletrack/blob/main/pysot_toolkit/test.py) if you don't test VOT2019/18/16. You can also build `region` by `python setup.py build_ext --inplace` in [pysot_toolkit](https://github.com/chenxin-dlut/mobiletrack/blob/main/pysot_toolkit).
 
 ## Acknowledgement
 
