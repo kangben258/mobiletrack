@@ -124,18 +124,4 @@ python pytorch2onnx.py
 
 * You can also use [pytracking](https://github.com/chenxin-dlut/mobiletrack/blob/main/pytracking) to test and evaluate tracker. The results might be slightly different with [PySOT](https://github.com/STVIR/pysot) due to the slight difference in implementation (pytracking saves  results as integers, pysot toolkit saves the results as decimals).
 
-#### Getting Help
 
-If you meet problem, please try searching our Github issues, if you can't find solutions, feel free to open a new issue.
-
-- `ImportError: cannot import name region`
-
-Solution: You can just delete `from pysot_toolkit.toolkit.utils.region import vot_overlap, vot_float2str` in [test.py](https://github.com/chenxin-dlut/mobiletrack/blob/main/pysot_toolkit/test.py) if you don't test VOT2019/18/16. You can also build `region` by `python setup.py build_ext --inplace` in [pysot_toolkit](https://github.com/chenxin-dlut/mobiletrack/blob/main/pysot_toolkit).
-
-## Acknowledgement
-
-This is a modified version of the python framework [PyTracking](https://github.com/visionml/pytracking)  and  [Transt](https://github.com/chenxin-dlut/TransT) based on **Pytorch** , also borrowing from [PySOT](https://github.com/STVIR/pysot) and [GOT-10k Python Toolkit](https://github.com/got-10k/toolkit). We would like to thank their authors for providing great frameworks and toolkits.
-## Contact
-
-* Xin Chen (email:chenxin3131@mail.dlut.edu.cn)
-* Ben Kang(email:kangben@mail.dlut.edu.cn)
