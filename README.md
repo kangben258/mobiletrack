@@ -4,7 +4,7 @@
 
 ## Installation
 
-This document contains detailed instructions for installing the necessary dependencied for **HCAT**. The instructions 
+This document contains detailed instructions for installing the necessary dependencied for **Mobiletrack**. The instructions 
 have been tested on Ubuntu 18.04 system.
 
 #### Install dependencies
