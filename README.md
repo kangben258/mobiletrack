@@ -1,28 +1,6 @@
-# HCAT
-Official implementation of the HCAT , including training code and trained models.
+# MobileTracker
 
 ## Tracker
-
-**HCAT [download model](https://drive.google.com/drive/folders/1kcYIb1WMDWo6_96cfN2YwpijcJZp1CIJ?usp=sharing)**
-
-In this work, we present an efficient tracking method via a hierarchical cross-attention transformer named HCAT. Our model runs about 195 f ps on GPU, 45 fps on CPU, and 55 fps on the edge AI platform of NVidia Jetson AGX Xavier. Experiments show that our HCAT achieves promising results on LaSOT, GOT-10k,TrackingNet, NFS, OTB100, UAV123, and VOT2020.
-
-![framework](pytracking/fig/framework.png)
-
-![FSHCAT](pytracking/fig/FSHCAT.png)
-
-## Results
-
-|      **Model**       | **LaSOT<br>AUC(%) ** | **TrackingNet<br>**AUC(%) | GOT-10k<br/>AO (%) | **Speed-GPU<BR>(fps)** | **Speed-CPU<BR>(fps)** | **Speed-AGX<br>(fps)** |
-| :------------------: | :------------------: | :-----------------------: | :----------------: | :--------------------: | :--------------------: | :--------------------: |
-|     Res18_N1_q16     |         57.9         |           74.2            |        61.3        |          240           |           46           |           69           |
-|     Res18_N2_q16     |         59.1         |           76.6            |        65.3        |          195           |           45           |           55           |
-|     Res50_N2_q16     |         59.1         |           77.9            |        67.8        |          115           |           22           |           42           |
-|  Lighttrack_N2_q16   |         59.8         |           76.6            |        66.3        |          100           |           45           |           34           |
-| Convnext_tiny_N2_q16 |         63.1         |           80.5            |        70.1        |          136           |           21           |           34           |
-
-* The reported speed is the speed of the model itself, and does not include pre- and post-processing of the image(e.g., cropping the search region)
-* Download [The RawResults](https://github.com/chenxin-dlut/HCAT/releases/tag/RawResults)
 
 ## Installation
 
@@ -88,10 +66,10 @@ export PYTHONPATH=<path_of_HCAT>:$PYTHONPATH
 * Runing the following commands to train the HCAT. You can customize some parameters by modifying [hcat.py](ltr/train_settings/hcat/hcat.py)
 ```bash
 conda activate hcat
-cd HCAT/ltr
-python run_training.py hcat hcat 
+cd ltr
+python run_training.py mobiletrack mobiletrack
 # for ddp
-# python run_training_ddp.py hcat hcat --local_rank 4
+# python run_training_ddp.py mobiletrack mobiletrack --local_rank 4
 ```
 
 #### Convert Model
@@ -100,7 +78,7 @@ python run_training.py hcat hcat
 
 ```
 conda activate hcat
-cd HCAT/pysot_toolkit
+cd pysot_toolkit
 python pytorch2onnx.py
 ```
 
