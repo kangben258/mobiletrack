@@ -84,44 +84,4 @@ python pytorch2onnx.py
 
 
 
-#### Evaluation
-
-* We integrated [PySOT](https://github.com/STVIR/pysot) for evaluation. You can download json files in [PySOT](https://github.com/STVIR/pysot) or [here](https://drive.google.com/file/d/1PItNIOkui0iGCRglgsZPZF1-hkmj7vyv/view?usp=sharing).
-
-  For pytorch model,  You need to specify the path of the model and dataset in the [test.py](pysot_toolkit/test.py ).
-    ```python
-    net_path = '/path_to_model' #Absolute path of the model
-    dataset_root= '/path_to_datasets' #Absolute path of the datasets
-    ```
-
-    Then run the following commands
-
-    ```bash
-    conda activate mobiletrack
-    cd mobiletrack
-    python -u pysot_toolkit/test.py --dataset <name of dataset> --name 'mobiletrack' #test tracker #test tracker
-    python pysot_toolkit/eval.py --tracker_path results/ --dataset <name of dataset> --num 1 --tracker_prefix 'mobiletrack' #eval tracker
-    ```
-
-  For onnx model,  You need to specify the path of the model and dataset in the [test_onnx.py](pysot_toolkit/test_onnx.py ).
-
-    ```python
-  backbone_path = '/path_to_backbone' #Absolute path of the backbone
-  model_path = '/path_to_model' #Absolute path of the model
-  dataset_root= '/path_to_datasets' #Absolute path of the datasets
-    ```
-
-    Then run the following commands
-
-    ```bash
-  conda activate mobiletrack
-  cd mobiletrack
-  python -u pysot_toolkit/test_onnx.py --dataset <name of dataset> --name 'mobiletrack' #test tracker #test tracker
-  python pysot_toolkit/eval.py --tracker_path results/ --dataset <name of dataset> --num 1 --tracker_prefix 'mobiletrack' #eval tracker
-    ```
-
-  The testing results will in the current directory(results/dataset/mobiletrack/)
-
-* You can also use [pytracking](https://github.com/chenxin-dlut/mobiletrack/blob/main/pytracking) to test and evaluate tracker. The results might be slightly different with [PySOT](https://github.com/STVIR/pysot) due to the slight difference in implementation (pytracking saves  results as integers, pysot toolkit saves the results as decimals).
-
 
